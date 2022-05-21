@@ -1,0 +1,30 @@
+{
+	"name": "webaccess",
+	"version": "1.0.0",
+	"description": "",
+	"main": "app.js",
+	"scripts": {
+		"server": "nodemon server/app",
+		"client": "cd client && pnpm run start",
+		"dev": "concurrently \"pnpm run server\" \"pnpm run client\"",
+		"test": "jest"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"axios": "^0.26.1",
+		"cheerio": "^1.0.0-rc.10",
+		"express": "^4.17.2",
+		"express-async-handler": "^1.2.0"
+	},
+	"devDependencies": {
+		"concurrently": "^7.0.0",
+		"jest": "^27.4.7",
+		"nodemon": "^2.0.15",
+		"supertest": "^6.2.3"
+	},
+	"jest": {
+		"testEnvironment": "node"
+	}
+}
