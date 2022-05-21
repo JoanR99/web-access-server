@@ -12,7 +12,7 @@ const failTestData = {
 
 	H32: {
 		name: 'Form',
-		dascription: 'Form elements must have a submit option',
+		description: 'Form elements must have a submit option',
 		successCriterion: [
 			{
 				name: 'Success Criterion 3.2.2: On Input',

@@ -4,7 +4,7 @@ import {
 	useEvaluationResults,
 	useEvaluationApi,
 } from '../../context/evaluation/EvaluationContext';
-import { ErrorCard } from '../';
+import { ErrorCard, Spinner } from '../';
 
 const UrlForm = () => {
 	const navigate = useNavigate();
@@ -22,7 +22,6 @@ const UrlForm = () => {
 	useEffect(() => {
 		return () => {
 			if (isError) {
-				console.log('hola');
 				resetError();
 			}
 		};
@@ -52,9 +51,8 @@ const UrlForm = () => {
 					Evaluate
 				</button>
 			</form>
-			{isLoading && <h3>Loading...</h3>}
+			{isLoading && <Spinner />}
 			{isError && <ErrorCard>{errorMessage}</ErrorCard>}
-			{console.log(isError)}
 		</>
 	);
 };

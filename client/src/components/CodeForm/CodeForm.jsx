@@ -4,18 +4,28 @@ import {
 	useEvaluationResults,
 	useEvaluationApi,
 } from '../../context/evaluation/EvaluationContext';
+import { ErrorCard, Spinner } from '../';
 
 const CodeForm = () => {
 	const [code, setCode] = useState('');
 	const navigate = useNavigate();
 	const { useEvaluation } = useEvaluationApi();
-	const { isSuccess, isError, isLoading } = useEvaluationResults();
+	const { isSuccess, isError, errorMessage, isLoading } =
+		useEvaluationResults();
 
 	useEffect(() => {
 		if (isSuccess) {
 			navigate('/evaluation/results');
 		}
 	}, [isSuccess]);
+
+	useEffect(() => {
+		return () => {
+			if (isError) {
+				resetError();
+			}
+		};
+	}, [isError]);
 
 	const submitHandler = (e) => {
 		e.preventDefault();
@@ -41,8 +51,8 @@ const CodeForm = () => {
 					Evaluate
 				</button>
 			</form>
-			{isLoading && <h3>Loading...</h3>}
-			{isError && <h3>Sorry, something went wrong.</h3>}
+			{isLoading && <Spinner />}
+			{isError && <ErrorCard>{errorMessage}</ErrorCard>}
 		</>
 	);
 };

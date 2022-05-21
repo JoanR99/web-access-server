@@ -20,6 +20,7 @@ import Header from './Header/Header';
 import Hero from './Hero/Hero';
 import HeroIllustration from './HeroIllustration/HeroIllustration';
 import NetIcon from './NetIcon/NetIcon';
+import Spinner from './Spinner/Spinner';
 import StatusPanel from './StatusPanel/StatusPanel';
 import TextColorInput from './TextColorInput/TextColorInput';
 import UrlEvaluationIllustration from './UrlEvaluationIllustration/UrlEvaluationIllustration';
@@ -48,6 +49,7 @@ export {
 	Hero,
 	HeroIllustration,
 	NetIcon,
+	Spinner,
 	StatusPanel,
 	TextColorInput,
 	UrlEvaluationIllustration,
