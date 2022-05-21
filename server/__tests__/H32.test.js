@@ -1,5 +1,5 @@
 const cheerio = require('cheerio');
-const { H32 } = require('../utils/evaluationTests.js');
+const { H32 } = require('../utils/techniques');
 const failTestData = require('../utils/failTestData.js');
 
 describe('Unit tests for H25 evaluation test', () => {

@@ -1,6 +1,6 @@
 const cheerio = require('cheerio');
 const failTestData = require('../utils/failTestData.js');
-const { H95 } = require('../utils/evaluationTests.js');
+const { H95 } = require('../utils/techniques');
 
 describe('Unit tests for H95 evaluation test', () => {
 	test('Test exist', () => {

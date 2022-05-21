@@ -11,7 +11,7 @@ const {
 	H93,
 	H95,
 	H96,
-} = require('./evaluationTests.js');
+} = require('./techniques');
 
 const applyEvaluationTests = async (document) => {
 	if (typeof document === 'undefined')
