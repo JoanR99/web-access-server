@@ -1,31 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {
-	useEvaluationResults,
-	useEvaluationApi,
-} from '../../context/evaluation/EvaluationContext';
-import { ErrorCard, Spinner } from '../';
+import React, { useState } from 'react';
+import { useEvaluationApi } from '../../context/evaluation/EvaluationContext';
 
 const UrlForm = () => {
-	const navigate = useNavigate();
 	const [url, setUrl] = useState('');
-	const { useEvaluation, resetError } = useEvaluationApi();
-	const { isSuccess, isError, errorMessage, isLoading } =
-		useEvaluationResults();
-
-	useEffect(() => {
-		if (isSuccess) {
-			navigate('/evaluation/results');
-		}
-	}, [isSuccess]);
-
-	useEffect(() => {
-		return () => {
-			if (isError) {
-				resetError();
-			}
-		};
-	}, [isError]);
+	const { useEvaluation } = useEvaluationApi();
 
 	const submitHandler = (e) => {
 		e.preventDefault();
@@ -51,8 +29,6 @@ const UrlForm = () => {
 					Evaluate
 				</button>
 			</form>
-			{isLoading && <Spinner />}
-			{isError && <ErrorCard>{errorMessage}</ErrorCard>}
 		</>
 	);
 };

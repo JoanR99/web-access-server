@@ -1,12 +1,15 @@
 import React from 'react';
-import { useContrastStore } from '../../context/contrast/ContrastContext';
+import { useEvaluationResults } from '../../context/evaluation/EvaluationContext';
+import { ErrorCard, Spinner } from '../';
 
 const EvaluationStatus = () => {
-	const { isLoading, error } = useContrastStore();
+	const { isSuccess, isError, errorMessage, isLoading } =
+		useEvaluationResults();
 	return (
 		<>
-			{isLoading && <div>loading...</div>}
-			{error && <div>{error}</div>}
+			{isLoading && <Spinner />}
+			{isError && <ErrorCard>{errorMessage}</ErrorCard>}
+			{isSuccess && <div>Success!</div>}
 		</>
 	);
 };

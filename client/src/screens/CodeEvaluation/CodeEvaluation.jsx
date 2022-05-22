@@ -1,15 +1,29 @@
 import React from 'react';
-import { CodeEvaluationIllustration, CodeForm } from '../../components';
+import {
+	CodeEvaluationIllustration,
+	CodeForm,
+	EvaluationStatus,
+} from '../../components';
+import useEvaluationFlow from '../../hooks/useEvaluationFlow';
+import { useEvaluationResults } from '../../context/evaluation/EvaluationContext';
 
-const CodeEvaluation = () => (
-	<div className="layout-section">
-		<div className="layout-section__img">
-			<CodeEvaluationIllustration />
+const CodeEvaluation = () => {
+	const { isSuccess, isError } = useEvaluationResults();
+	const evaluationFlow = useEvaluationFlow;
+
+	evaluationFlow(isSuccess, isError);
+
+	return (
+		<div className="section">
+			<div className="section__illustration">
+				<CodeEvaluationIllustration />
+			</div>
+			<div className="section__content form-layout">
+				<CodeForm />
+				<EvaluationStatus />
+			</div>
 		</div>
-		<div className="layout-section__info form-layout">
-			<CodeForm />
-		</div>
-	</div>
-);
+	);
+};
 
 export default CodeEvaluation;
