@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './App.scss';
 import {
 	AccessibilityEvaluation,
 	CodeEvaluation,
@@ -11,7 +10,6 @@ import {
 	SelectEvaluationType,
 	UrlEvaluation,
 } from './screens';
-import { UrlForm } from './components';
 
 function App() {
 	return (

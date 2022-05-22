@@ -2,13 +2,14 @@ import React from 'react';
 import {
 	CodeEvaluationIllustration,
 	CodeForm,
-	EvaluationStatus,
+	RequestStatus,
 } from '../../components';
 import useEvaluationFlow from '../../hooks/useEvaluationFlow';
 import { useEvaluationResults } from '../../context/evaluation/EvaluationContext';
 
 const CodeEvaluation = () => {
-	const { isSuccess, isError } = useEvaluationResults();
+	const { isSuccess, isError, errorMessage, isLoading } =
+		useEvaluationResults();
 	const evaluationFlow = useEvaluationFlow;
 
 	evaluationFlow(isSuccess, isError);
@@ -20,7 +21,12 @@ const CodeEvaluation = () => {
 			</div>
 			<div className="section__content form-layout">
 				<CodeForm />
-				<EvaluationStatus />
+				<RequestStatus
+					isSuccess={isSuccess}
+					isError={isError}
+					errorMessage={errorMessage}
+					isLoading={isLoading}
+				/>
 			</div>
 		</div>
 	);

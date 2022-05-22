@@ -1,7 +1,7 @@
 import React from 'react';
-import './FailDetailCard.scss';
+import './ResultsCard.scss';
 
-const FailDetailCard = ({
+const ResultsCard = ({
 	name,
 	description,
 	elementCount,
@@ -46,4 +46,4 @@ const FailDetailCard = ({
 	);
 };
 
-export default FailDetailCard;
+export default ResultsCard;
