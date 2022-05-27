@@ -4,6 +4,7 @@ specifiers:
   axios: ^0.26.1
   cheerio: ^1.0.0-rc.10
   concurrently: ^7.0.0
+  cross-env: ^7.0.3
   express: ^4.17.2
   express-async-handler: ^1.2.0
   jest: ^27.4.7
@@ -18,6 +19,7 @@ dependencies:
 
 devDependencies:
   concurrently: 7.1.0
+  cross-env: 7.0.3
   jest: 27.5.1
   nodemon: 2.0.15
   supertest: 6.2.3
@@ -1183,6 +1185,14 @@ packages:
 
   /cookiejar/2.1.3:
     resolution: {integrity: sha512-JxbCBUdrfr6AQjOXrxoTvAMJO4HBTUIlBzslcJPAz+/KT8yk53fXun51u+RenNYvad/+Vc2DIz5o9UxlCDymFQ==}
+    dev: true
+
+  /cross-env/7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
     dev: true
 
   /cross-spawn/7.0.3:

@@ -1,31 +1,37 @@
 const asyncHandler = require('express-async-handler');
 const evaluatePage = require('../utils/evaluatePage.js');
 const getPageDOM = require('../utils/getPageDOM.js');
+const { UndefinedBodyRequest } = require('../errors.js');
+const { next } = require('cheerio/lib/api/traversing');
 
-module.exports.evaluateByUrl = asyncHandler(async (req, res) => {
-	const { url } = req.body;
+module.exports.evaluateByUrl = async (req, res, next) => {
+	try {
+		const { url } = req.body;
 
-	const DOM = await getPageDOM(url);
+		if (typeof url === 'undefined')
+			throw new UndefinedBodyRequest('You must provide an URL.');
 
-	const results = await evaluatePage(DOM);
+		const DOM = await getPageDOM(url);
 
-	if (results) {
+		const results = await evaluatePage(DOM);
+
 		res.status(200).json(results);
-	} else {
-		res.status(500);
-		throw new Error('Evaluation error');
+	} catch (e) {
+		next(e);
 	}
-});
+};
 
-module.exports.evaluateByCode = asyncHandler(async (req, res) => {
-	const { code } = req.body;
+module.exports.evaluateByCode = async (req, res, next) => {
+	try {
+		const { code } = req.body;
 
-	const results = await evaluatePage(code);
+		if (typeof code === 'undefined')
+			throw new UndefinedBodyRequest('You must provide a HTML code.');
 
-	if (results) {
+		const results = await evaluatePage(code);
+
 		res.status(200).json(results);
-	} else {
-		res.status(500);
-		throw new Error('Evaluation error');
+	} catch (e) {
+		next(e);
 	}
-});
+};

@@ -1,6 +1,7 @@
 const express = require('express');
 const {
 	notFound,
+	errorLogger,
 	errorHandler,
 } = require('./middlewares/error.middlewares.js');
 const {
@@ -17,6 +18,8 @@ app.post('/api/evaluate/url', evaluateByUrl);
 app.post('/api/evaluate/code', evaluateByCode);
 
 app.use(notFound);
+
+app.use(errorLogger);
 
 app.use(errorHandler);
 
