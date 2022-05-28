@@ -1,6 +1,6 @@
 const axios = require('axios');
 const isValidHttpUrl = require('./validateHttpUrl.js');
-const { InvalidType } = require('../errors.js');
+const { InvalidType, ServerError } = require('../errors.js');
 
 const getPageDOM = async (url) => {
 	const validUrl = isValidHttpUrl(url);
@@ -13,7 +13,9 @@ const getPageDOM = async (url) => {
 			return response.data;
 		}
 	} catch (e) {
-		throw new Error('can not fetch url');
+		throw new ServerError(
+			'Can not fetch URL. Please make sure it is a URL to a valid website.'
+		);
 	}
 };
 

@@ -1,24 +1,33 @@
-class UndefinedBodyRequest extends Error {
+class BaseError extends Error {
 	constructor(message) {
 		super();
 		this.name = constructor.name;
 
+		if (this instanceof UndefinedBodyRequest) {
+			this.statusCode = 400;
+		} else if (this instanceof InvalidType) {
+			this.statusCode = 422;
+		} else if (this instanceof ServerError) {
+			this.statusCode = 500;
+		} else if (this instanceof NotFound) {
+			this.statusCode = 404;
+		}
+
 		this.message = message;
-		this.status = 400;
 	}
 }
 
-class InvalidType extends Error {
-	constructor(message) {
-		super();
-		this.name = constructor.name;
+class UndefinedBodyRequest extends BaseError {}
 
-		this.message = message;
-		this.status = 422;
-	}
-}
+class InvalidType extends BaseError {}
+
+class ServerError extends BaseError {}
+
+class NotFound extends BaseError {}
 
 module.exports = {
 	UndefinedBodyRequest,
 	InvalidType,
+	ServerError,
+	NotFound,
 };

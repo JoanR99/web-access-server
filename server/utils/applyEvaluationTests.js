@@ -12,26 +12,24 @@ const {
 	H95,
 	H96,
 } = require('./techniques');
+const { ServerError } = require('../errors.js');
 
 const applyEvaluationTests = async (document) => {
-	if (typeof document === 'undefined')
-		throw new Error('You must provide valid HTML nodes.');
-
 	try {
-		const testResults = await [
-			await H25(document),
-			await H32(document),
-			await H35(document),
-			await H36_H37(document),
-			await H44(document),
-			await H46(document),
-			await H57(document),
-			await H63(document),
-			await H64(document),
-			await H93(document),
-			await H95(document),
-			await H96(document),
-		];
+		const testResults = await Promise.all([
+			H25(document),
+			H32(document),
+			H35(document),
+			H36_H37(document),
+			H44(document),
+			H46(document),
+			H57(document),
+			H63(document),
+			H64(document),
+			H93(document),
+			H95(document),
+			H96(document),
+		]);
 
 		const specificResults = testResults.filter(
 			(testResult) => testResult !== null
@@ -53,7 +51,7 @@ const applyEvaluationTests = async (document) => {
 			errorsFoundCount,
 		};
 	} catch (e) {
-		throw new Error(e);
+		throw new ServerError('Something went wrong. Please try again.');
 	}
 };
 

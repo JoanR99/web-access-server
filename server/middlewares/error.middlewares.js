@@ -1,6 +1,7 @@
+const { NotFound } = require('../errors.js');
+
 module.exports.notFound = (req, res, next) => {
-	const error = new Error(`Not found - ${req.originalUrl}`);
-	res.status(404);
+	const error = new NotFound(`Not found - ${req.originalUrl}`);
 	next(error);
 };
 
@@ -10,7 +11,7 @@ module.exports.errorLogger = (err, req, res, next) => {
 };
 
 module.exports.errorHandler = (err, req, res, next) => {
-	res.status(err.status).json({
+	res.status(err.statusCode).json({
 		message: err.message,
 		stack: process.env.NODE_ENV === 'production' ? null : err.stack,
 	});

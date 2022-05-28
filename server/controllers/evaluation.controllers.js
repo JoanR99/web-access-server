@@ -1,8 +1,6 @@
-const asyncHandler = require('express-async-handler');
 const evaluatePage = require('../utils/evaluatePage.js');
 const getPageDOM = require('../utils/getPageDOM.js');
 const { UndefinedBodyRequest } = require('../errors.js');
-const { next } = require('cheerio/lib/api/traversing');
 
 module.exports.evaluateByUrl = async (req, res, next) => {
 	try {
