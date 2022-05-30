@@ -19,11 +19,17 @@ app.post('/api/evaluate/code', evaluateByCode);
 
 app.use(notFound);
 
-app.use(errorLogger);
+const ENV = process.env.NODE_ENV;
+
+if (ENV === 'development') app.use(errorLogger);
 
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-const ENV = process.env.NODE_ENV;
 
-app.listen(PORT, console.log(`Server running in ${ENV} mode on port ${PORT}.`));
+const server = app.listen(
+	PORT,
+	console.log(`Server running in ${ENV} mode on port ${PORT}.`)
+);
+
+module.exports = { app, server };
