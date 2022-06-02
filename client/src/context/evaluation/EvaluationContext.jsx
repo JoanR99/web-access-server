@@ -1,5 +1,4 @@
 import { useContext, createContext, useReducer, useMemo } from 'react';
-import axios from 'axios';
 import { initialState, evaluationReducer } from './evaluation.reducer';
 import {
 	evaluationStart,
@@ -8,6 +7,7 @@ import {
 	successReset,
 	errorReset,
 } from './evaluation.actions';
+import evaluationRequest from '../../services/evaluationRequest';
 
 const storeContext = createContext(initialState);
 const apiContext = createContext();
@@ -20,13 +20,10 @@ export const EvaluationProvider = ({ children }) => {
 			try {
 				dispatch(evaluationStart());
 
-				const { data } = await axios.post(`/api/evaluate/${endPoint}`, {
-					[endPoint]: urlOrCode,
-				});
+				const results = await evaluationRequest(endPoint, urlOrCode);
 
-				dispatch(evaluationSuccess(data));
+				dispatch(evaluationSuccess(results));
 			} catch (e) {
-				console.log(e.response);
 				dispatch(evaluationFailure(e.response.data.message));
 			}
 		};
