@@ -3,19 +3,24 @@ const {
 	notFound,
 	errorLogger,
 	errorHandler,
+	asyncErrorHandler,
 } = require('./middlewares/error.middlewares.js');
 const {
 	evaluateByUrl,
 	evaluateByCode,
 } = require('./controllers/evaluation.controllers.js');
+const {
+	validateUrl,
+	validateCode,
+} = require('./middlewares/validation.middleware');
 
 const app = express();
 
 app.use(express.json());
 
-app.post('/api/evaluate/url', evaluateByUrl);
+app.post('/api/evaluate/url', validateUrl, asyncErrorHandler(evaluateByUrl));
 
-app.post('/api/evaluate/code', evaluateByCode);
+app.post('/api/evaluate/code', validateCode, asyncErrorHandler(evaluateByCode));
 
 app.use(notFound);
 

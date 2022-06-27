@@ -16,3 +16,11 @@ module.exports.errorHandler = (err, req, res, next) => {
 		stack: process.env.NODE_ENV === 'production' ? null : err.stack,
 	});
 };
+
+module.exports.asyncErrorHandler = (controller) => async (req, res, next) => {
+	try {
+		await controller(req, res);
+	} catch (e) {
+		next(e);
+	}
+};
