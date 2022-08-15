@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ContrastEvaluation.scss';
 import { ColorInputs, ExamplePanel, StatusPanel } from '../../components';
-import { ContrastProvider } from '../../context/contrast/ContrastContext';
 
 const ContrastEvaluation = () => {
+	const [textColor, setTextColor] = useState('#ffffff');
+	const [backgroundColor, setBackgroundColor] = useState('#000000');
 	return (
-		<ContrastProvider>
+		<div className="contrast-page">
 			{console.log('contrast')}
-			<div className="contrast-page">
-				<ExamplePanel />
-				<StatusPanel />
-				<ColorInputs />
-			</div>
-		</ContrastProvider>
+			<ExamplePanel textColor={textColor} backgroundColor={backgroundColor} />
+			<StatusPanel textColor={textColor} backgroundColor={backgroundColor} />
+			<ColorInputs
+				textColor={textColor}
+				backgroundColor={backgroundColor}
+				setTextColor={setTextColor}
+				setBackgroundColor={setBackgroundColor}
+			/>
+		</div>
 	);
 };
 

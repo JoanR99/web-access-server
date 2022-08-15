@@ -1,11 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { EvaluationProvider } from '../../context/evaluation/EvaluationContext';
+import { ResultsProvider } from '../../context/ResultsProvider';
 
 const AccessibilityEvaluation = () => (
-	<EvaluationProvider>
-		<Outlet />
-	</EvaluationProvider>
+	<ResultsProvider>
+		<>
+			<Outlet />
+		</>
+	</ResultsProvider>
 );
 
 export default AccessibilityEvaluation;

@@ -1,18 +1,10 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ResultsCardList } from '../../components';
-import {
-	useEvaluationResults,
-	useEvaluationApi,
-} from '../../context/evaluation/EvaluationContext';
+import { useResults } from '../../context/ResultsProvider';
 
 const AccessibilityEvaluationResults = () => {
-	const { resetSuccess } = useEvaluationApi();
-	const { results } = useEvaluationResults();
-
-	useEffect(() => {
-		resetSuccess();
-	}, []);
+	const results = useResults();
 
 	return (
 		<div className="results-page">

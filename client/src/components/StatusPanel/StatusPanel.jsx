@@ -1,10 +1,8 @@
 import React from 'react';
 import './StatusPanel.scss';
-import { useContrastStore } from '../../context/contrast/ContrastContext';
 import useContrast from '../../hooks/useContrast';
 
-const StatusPanel = () => {
-	const { textColor, backgroundColor } = useContrastStore();
+const StatusPanel = ({ textColor, backgroundColor }) => {
 	const { ratioStatus, pass, levelStatus } = useContrast(
 		textColor,
 		backgroundColor

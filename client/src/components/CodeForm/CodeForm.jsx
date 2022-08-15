@@ -1,13 +1,32 @@
 import React, { useState } from 'react';
-import { useEvaluationApi } from '../../context/evaluation/EvaluationContext';
+import { useNavigate } from 'react-router-dom';
+import { codeEvaluationRequest } from '../../services/evaluationRequest';
+import Spinner from '../Spinner/Spinner';
+import { useSetResults } from '../../context/ResultsProvider';
 
 const CodeForm = () => {
 	const [code, setCode] = useState('');
-	const { useEvaluation } = useEvaluationApi();
+	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState(null);
+	const navigate = useNavigate();
+	const setResults = useSetResults();
 
-	const submitHandler = (e) => {
+	const submitHandler = async (e) => {
 		e.preventDefault();
-		useEvaluation('code', code);
+
+		try {
+			setIsLoading(true);
+
+			const results = await codeEvaluationRequest(code);
+
+			setResults(results);
+
+			navigate('/evaluation/results');
+		} catch (e) {
+			setError(e.response.data.message);
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	return (
@@ -26,7 +45,7 @@ const CodeForm = () => {
 					></textarea>
 				</div>
 				<button type="submit" className="btn">
-					Evaluate
+					{isLoading ? <Spinner /> : 'Evaluate'}
 				</button>
 			</form>
 		</>
