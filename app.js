@@ -4,15 +4,15 @@ const {
 	errorLogger,
 	errorHandler,
 	asyncErrorHandler,
-} = require('./middlewares/error.middlewares.js');
+} = require('./src/middlewares/error.middlewares.js');
 const {
 	evaluateByUrl,
 	evaluateByCode,
-} = require('./controllers/evaluation.controllers.js');
+} = require('./src/controllers/evaluation.controllers.js');
 const {
 	validateUrl,
 	validateCode,
-} = require('./middlewares/validation.middleware');
+} = require('./src/middlewares/validation.middleware');
 
 const app = express();
 
