@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const {
 	notFound,
 	errorLogger,
@@ -13,8 +14,11 @@ const {
 	validateUrl,
 	validateCode,
 } = require('./src/middlewares/validation.middleware');
+const corsOptions = require('./src/config/corsOptions');
 
 const app = express();
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
