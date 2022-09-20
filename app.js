@@ -20,6 +20,11 @@ const app = express();
 
 app.use(cors(corsOptions));
 
+app.use((req, res, next) => {
+	res.header({ 'Access-Control-Allow-Origin': '*' });
+	next();
+});
+
 app.use(express.json());
 
 app.post('/api/evaluate/url', validateUrl, asyncErrorHandler(evaluateByUrl));

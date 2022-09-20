@@ -1,6 +1,5 @@
 const allowedOrigins = [
-	'https://web-access-963yckspc-romerojoan1999-gmailcom.vercel.app',
-	'https://web-access.vercel.app',
+	'https://web-access-39tui8mxk-romerojoan1999-gmailcom.vercel.app',
 ];
 
 module.exports = allowedOrigins;
