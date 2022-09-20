@@ -5,8 +5,8 @@
 	"main": "app.js",
 	"scripts": {
 		"server": "cross-env NODE_ENV=development nodemon server/app",
-		"client": "cd client && pnpm run start",
-		"dev": "concurrently \"pnpm run server\" \"pnpm run client\"",
+		"client": "cd client && npm run start",
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
 		"test": "cross-env NODE_ENV=test jest"
 	},
 	"keywords": [],

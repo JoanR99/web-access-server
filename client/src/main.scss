@@ -200,3 +200,10 @@ a {
 .url-illustration {
 	padding: 4rem;
 }
+
+.link {
+	&:active,
+	&:visited {
+		color: $color-action;
+	}
+}

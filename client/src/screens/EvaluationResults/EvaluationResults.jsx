@@ -14,7 +14,9 @@ const AccessibilityEvaluationResults = () => {
 			<h3>Errors found: {results?.errorsFoundCount}</h3>
 			<ResultsCardList results={results?.specificResults} />
 
-			<Link to="/evaluation">Go Back</Link>
+			<Link to="/evaluation" className="link">
+				Go Back
+			</Link>
 		</div>
 	);
 };

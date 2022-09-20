@@ -4,7 +4,7 @@ import { ColorInputs, ExamplePanel, StatusPanel } from '../../components';
 
 const ContrastEvaluation = () => {
 	const [textColor, setTextColor] = useState('#ffffff');
-	const [backgroundColor, setBackgroundColor] = useState('#000000');
+	const [backgroundColor, setBackgroundColor] = useState('#1A8FE3');
 	return (
 		<div className="contrast-page">
 			{console.log('contrast')}
