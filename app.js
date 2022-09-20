@@ -13,7 +13,6 @@ const {
 	validateUrl,
 	validateCode,
 } = require('./src/middlewares/validation.middleware');
-const corsOptions = require('./src/config/corsOptions');
 
 const app = express();
 
