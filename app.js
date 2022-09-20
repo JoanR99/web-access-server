@@ -21,6 +21,10 @@ app.use((req, res, next) => {
 	next();
 });
 
+app.options('/*', (_, res) => {
+	res.sendStatus(200);
+});
+
 app.use(express.json());
 
 app.post('/api/evaluate/url', validateUrl, asyncErrorHandler(evaluateByUrl));
