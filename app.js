@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const {
 	notFound,
 	errorLogger,
@@ -14,7 +15,11 @@ const {
 	validateCode,
 } = require('./src/middlewares/validation.middleware');
 
+const corsOptions = require('./src/config/corsOptions');
+
 const app = express();
+
+app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
 	res.header({ 'Access-Control-Allow-Origin': '*' });
